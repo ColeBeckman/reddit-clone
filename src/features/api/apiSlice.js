@@ -15,8 +15,17 @@ export const redditApi = createApi({
     }
   }),
   endpoints: (builder) => ({
-    getTopPosts: builder.query({
-      query: () => 'getPopularPosts?sort=new'
-    })
+    getPopularPosts: builder.query({
+      query: (type) => `getPopularPosts?sort=${type}`,
+      transformResponse: (response) => response.data.posts,
+    }),
+    getTopSubPosts: builder.query({
+      query: (subReddit) => `getTopPostsBySubreddit?subreddit=${subReddit}&time=day`,
+    }),
+    getSubPostDetails: builder.query({
+      query: (postId) => `https://reddit34.p.rapidapi.com/getPostDetails?${postId}`,
+    }),
   })
 });
+
+export const { useGetPopularPostsQuery, useGetTopSubPostsQuery, useGetSubPostDetailsQuery } = redditApi;

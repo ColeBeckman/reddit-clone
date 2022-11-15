@@ -1,0 +1,25 @@
+.header{
+  width: 100%;
+  display: flex;
+  background-color: #90d5f4;
+  height: 65px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  position: absolute;
+  left: 15px;
+  height: 63px;
+}
+
+.searchBar{
+  width: 375px;
+  height: 40px;
+  padding-left: 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+}
