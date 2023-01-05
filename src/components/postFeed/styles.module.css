@@ -1,0 +1,39 @@
+.postFeedWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 215px;
+  width: 830px;
+}
+
+button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid var(--jet);
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 1em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: var(--jet);
+  text-align: center;
+  transition: all 0.2s;
+}
+button + button {
+  margin-left: 10px;
+}
+button:hover {
+  color: #000000;
+  background-color: var(--bluewu);
+  cursor: pointer;
+}
+.active {
+  background-color: var(--bluewu);
+}
+@media all and (max-width: 30em) {
+  a.button1 {
+    display: block;
+    margin: 0.4em auto;
+  }
+}
