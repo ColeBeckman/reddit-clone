@@ -9,7 +9,10 @@ function Post({
   numComments,
   media,
   display_name,
+  url,
+  ...props
 }) {
+  console.log(preview);
   return (
     <div className={styles.postWrapper}>
       <Link to={`/post/${id}`}>
@@ -17,10 +20,10 @@ function Post({
           <h3>{author}</h3>
           <h2>{title}</h2>
         </div>
-        {!media?.scrubberThumbSource && preview?.url.includes("https") && (
-          <img className={styles.postImage} src={preview.url} />
+        {!media?.scrubberThumbSource && url?.includes("https") && (
+          <img className={styles.postImage} src={url} />
         )}
-        {!preview?.url && thumbnail?.url.includes("https") && (
+        {!url && thumbnail?.url.includes("https") && (
           <img className={styles.postThumbnail} src={thumbnail.url} />
         )}
         {media?.scrubberThumbSource?.includes("https") && (

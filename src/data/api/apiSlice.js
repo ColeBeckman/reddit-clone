@@ -8,19 +8,15 @@ export const redditApi = createApi({
   reducerPath: "rapidApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://www.reddit.com/",
-    prepareHeaders: (headers, { endpoint }) => {
-      if (endpoint !== "getPopularPosts") {
-        return headers;
-      }
-      headers.set("X-RapidAPI-Key", REDDIT_CLONE_API_KEY);
-      headers.set("X-RapidAPI-Host", REDDIT_CLONE_HOST_KEY);
-      return headers;
-    },
   }),
   endpoints: (builder) => ({
     getPopularPosts: builder.query({
-      query: (type) => `${baseUrl}getPopularPosts?sort=${type}`,
-      transformResponse: (response) => response.data.posts,
+      query: (type) => `/${type}.json`,
+      transformResponse: (response) => {
+        return response.data.children.map((post) => {
+          return post.data;
+        })
+      }
     }),
     getSubReddits: builder.query({
       query: () => `subreddits.json`,
