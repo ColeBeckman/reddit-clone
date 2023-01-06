@@ -1,9 +1,9 @@
 .header{
   width: 100%;
   display: flex;
-  background-color: #90d5f4;
-  height: 65px;
-  position: relative;
+  background-color: var(--bluewu);
+  height: var(--navHeight);
+  position: fixed;
   justify-content: center;
   align-items: center;
 }
