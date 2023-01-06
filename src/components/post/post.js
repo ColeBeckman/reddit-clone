@@ -13,6 +13,9 @@ function Post({
   ...props
 }) {
   console.log(preview);
+  let regex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi
+  const isPhoto = url.match(regex);
+  const video = media?.reddit_video?.fallback_url
   return (
     <div className={styles.postWrapper}>
       <Link to={`/post/${id}`}>
@@ -20,19 +23,13 @@ function Post({
           <h3>{author}</h3>
           <h2>{title}</h2>
         </div>
-        {!media?.scrubberThumbSource && url?.includes("https") && (
+        {!media?.scrubberThumbSource && isPhoto && (
           <img className={styles.postImage} src={url} />
         )}
-        {!url && thumbnail?.url.includes("https") && (
-          <img className={styles.postThumbnail} src={thumbnail.url} />
-        )}
-        {media?.scrubberThumbSource?.includes("https") && (
+        {video?.includes("https") && (
           <video className={styles.postVideo} controls>
             <source
-              src={media.scrubberThumbSource.replace("_96", "_480")}
-            ></source>
-            <source
-              src={media.scrubberThumbSource.replace("_96", "_360")}
+              src={video}
             ></source>
           </video>
         )}
