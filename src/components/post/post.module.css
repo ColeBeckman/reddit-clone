@@ -3,18 +3,35 @@
   box-shadow: 0 0em 0.7em var(--shadow);
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   margin: auto;
   margin-top: 25px;
   padding: 18px;
   border-radius: 10px;
+  text-decoration: none;
+}
+
+.iconImg {
+  max-width: 45px;
+  max-height: 45px;
+  border-radius: 55px;
+  margin-right: 10px;
+}
+
+.link{
+  text-decoration: none;
+  color: var(--black);
 }
 
 .textWrapper{
   display: flex;
   width: 100%;
   flex-direction: column;
+}
+
+.timeToGo{
+  display: flex;
+  text-align: end;
 }
 
 h3{

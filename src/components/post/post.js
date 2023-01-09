@@ -1,26 +1,49 @@
 import styles from "./post.module.css";
 import { Link } from "react-router-dom";
+import timeToTimeAgo from "../utils/timeConverter";
+
 function Post({
   id,
   title,
   author,
   preview,
   thumbnail,
-  numComments,
+  num_comments,
   media,
   display_name,
   url,
-  ...props
+  created_utc,
+  icon_url,
 }) {
-  console.log(preview);
+
+  useEffect(() => {
+    if (!isLoading) {
+      fetchSubredditAbout(post.data.subreddit_name_prefixed).then(
+        (response) => {
+          setSubredditIcon(response.icon_img);
+        }
+      );
+    }
+    return () => setSubredditIcon("");
+  }, [post.data.subreddit_name_prefixed, isLoading]);
+
   let regex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi
   const isPhoto = url.match(regex);
   const video = media?.reddit_video?.fallback_url
+  const commentCount = Intl.NumberFormat("en-US", {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(num_comments);
+  const postImg = icon_url ? icon_url : "/redditDefaultLogo.png";
   return (
-    <div className={styles.postWrapper}>
-      <Link to={`/post/${id}`}>
+    <Link className={styles.link} to={`/post/${id}`}>
+      <div className={styles.postWrapper}>
+        <div className={styles.timeToGo}>
+          <img className={styles.iconImg} src={postImg} />
+          <h3>Posted by: {author}</h3>
+          {timeToTimeAgo(created_utc)}
+        </div>
         <div className={styles.textWrapper}>
-          <h3>{author}</h3>
           <h2>{title}</h2>
         </div>
         {!media?.scrubberThumbSource && isPhoto && (
@@ -33,9 +56,9 @@ function Post({
             ></source>
           </video>
         )}
-      </Link>
-      <div className={styles.commentWrapper}>Comments: {numComments}</div>
-    </div>
+        <div className={styles.commentWrapper}>{commentCount} Comments</div>
+      </div>
+    </Link>
   );
 }
 
