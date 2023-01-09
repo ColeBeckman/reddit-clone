@@ -6,10 +6,12 @@
   padding: 8px 0px 8px 5px;
   align-items: center;
 }
+
 .textWrapper {
   display: flex;
   flex-direction: column;
 }
+
 .iconImg {
   max-width: 45px;
   max-height: 45px;
@@ -21,6 +23,7 @@ h4,
 h5 {
   margin: 0;
 }
+
 h5 {
   font-weight: 400;
 }
