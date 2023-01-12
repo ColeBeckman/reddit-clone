@@ -6,14 +6,13 @@
   flex-direction: column;
   margin: auto;
   margin-top: 25px;
-  padding: 18px;
   border-radius: 10px;
   text-decoration: none;
 }
 
 .iconImg {
-  max-width: 45px;
-  max-height: 45px;
+  max-width: 38px;
+  max-height: 38px;
   border-radius: 55px;
   margin-right: 10px;
 }
@@ -29,21 +28,28 @@
   flex-direction: column;
 }
 
-.timeToGo{
+.postHeader{
   display: flex;
   text-align: end;
+  align-items: center;
+  margin: 6px 0px 0px 6px;
 }
 
-h3{
+.postedBy{
   margin: 0;
   font-weight: 400;
+  font-size: 16px;
 }
 
-h2{
+.timeStamp{
+  margin-left: auto;
+}
+
+.postTitle{
   margin: 0;
   font-weight: 600;
-  font-size: 22px;
-  margin-bottom: 25px;
+  font-size: 20px;
+  margin: 6px 0px 15px 6px;
 }
 
 .commentWrapper{
