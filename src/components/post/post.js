@@ -1,6 +1,8 @@
 import styles from "./post.module.css";
 import { Link } from "react-router-dom";
 import timeToTimeAgo from "../utils/timeConverter";
+import { useGetSubRedditsQuery } from "../../data/api/apiSlice";
+import { useEffect, useState } from "react";
 
 function Post({
   id,
@@ -14,18 +16,19 @@ function Post({
   url,
   created_utc,
   icon_url,
+  subreddit
 }) {
 
+  const [subredditData, setSubredditData] = useState(null);
+
   useEffect(() => {
-    if (!isLoading) {
-      fetchSubredditAbout(post.data.subreddit_name_prefixed).then(
-        (response) => {
-          setSubredditIcon(response.icon_img);
-        }
-      );
+    async function fetchData() {
+      const response = await fetch(`https://www.reddit.com/r/${subreddit}/about.json`);
+      const data = await response.json();
+      setSubredditData(data);
     }
-    return () => setSubredditIcon("");
-  }, [post.data.subreddit_name_prefixed, isLoading]);
+    fetchData();
+  }, [subreddit]);
 
   let regex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi
   const isPhoto = url.match(regex);
@@ -38,13 +41,14 @@ function Post({
   return (
     <Link className={styles.link} to={`/post/${id}`}>
       <div className={styles.postWrapper}>
-        <div className={styles.timeToGo}>
-          <img className={styles.iconImg} src={postImg} />
-          <h3>Posted by: {author}</h3>
-          {timeToTimeAgo(created_utc)}
+        <div className={styles.postHeader}>
+          {subredditData.data.data.icon_img && <img className={styles.iconImg} src={subredditData} />}
+          <div></div>
+          <div className={styles.postedBy}>Posted by: {author}</div>
+          <div className={styles.timeStamp}>{timeToTimeAgo(created_utc)}</div>
         </div>
         <div className={styles.textWrapper}>
-          <h2>{title}</h2>
+          <div className={styles.postTitle}>{title}</div>
         </div>
         {!media?.scrubberThumbSource && isPhoto && (
           <img className={styles.postImage} src={url} />
