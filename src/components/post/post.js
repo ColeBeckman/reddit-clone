@@ -25,7 +25,7 @@ function Post({
     async function fetchData() {
       const response = await fetch(`https://www.reddit.com/r/${subreddit}/about.json`);
       const data = await response.json();
-      setSubredditData(data);
+      setSubredditData(data.data);
     }
     fetchData();
   }, [subreddit]);
@@ -37,22 +37,28 @@ function Post({
     notation: "compact",
     maximumFractionDigits: 1,
   }).format(num_comments);
-  const postImg = icon_url ? icon_url : "/redditDefaultLogo.png";
+  const postImg = subredditData?.icon_img ? subredditData.icon_img : "/redditDefaultLogo.png";
   return (
     <Link className={styles.link} to={`/post/${id}`}>
       <div className={styles.postWrapper}>
         <div className={styles.postHeader}>
-          {subredditData.data.data.icon_img && <img className={styles.iconImg} src={subredditData} />}
-          <div></div>
-          <div className={styles.postedBy}>Posted by: {author}</div>
+          <div>
+            <img className={styles.iconImg} src={postImg} />
+          </div>
+          <div className={styles.subRedditName}>
+            {subredditData?.display_name_prefixed}
+          </div>
+          <div className={styles.postedBy}>posted by: {author}</div>
           <div className={styles.timeStamp}>{timeToTimeAgo(created_utc)}</div>
         </div>
         <div className={styles.textWrapper}>
           <div className={styles.postTitle}>{title}</div>
         </div>
-        {!media?.scrubberThumbSource && isPhoto && (
-          <img className={styles.postImage} src={url} />
-        )}
+        <div className={styles.imageContainer}>
+          {!media?.scrubberThumbSource && isPhoto && (
+            <img className={styles.postImage} src={url} />
+          )}
+        </div>
         {video?.includes("https") && (
           <video className={styles.postVideo} controls>
             <source

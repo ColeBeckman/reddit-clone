@@ -6,11 +6,21 @@
   width: 830px;
 }
 
+.buttonWrapper {
+  box-sizing: border-box;
+  display: flex;
+  border: 1px solid var(--PrimaryDark);
+  width: 225px;
+  justify-content: center;
+  padding: 5px;
+  gap: 28px;
+  border-radius: 10px;
+}
+
 button {
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid var(--jet);
-  margin: 0 0.3em 0.3em 0;
   border-radius: 1em;
   box-sizing: border-box;
   text-decoration: none;
@@ -20,17 +30,18 @@ button {
   text-align: center;
   transition: all 0.2s;
 }
-button + button {
-  margin-left: 10px;
-}
+
 button:hover {
-  color: #000000;
-  background-color: var(--bluewu);
+  color: var(--light);
+  background-color: var(--PrimaryDark);
   cursor: pointer;
 }
+
 .active {
-  background-color: var(--bluewu);
+  background-color: var(--PrimaryDark);
+  color: var(--light);
 }
+
 @media all and (max-width: 30em) {
   a.button1 {
     display: block;

@@ -1,16 +1,18 @@
-*{
+* {
   font-family: 'Roboto', sans-serif;
 }
 
-:root{
+:root {
   --bluewu: #90d5f4;
   --white: #fcfcfc;
   --light: #f5f5f5;
   --jet: #2f2f2f;
-  --shadow: rgba(47,47,47,0.1);
+  --shadow: rgba(47, 47, 47, 0.1);
   --black: #0a0a0a;
   --nsfw: blur(1.5em);
   --navHeight: 65px;
+  --PrimaryDark: #1F2431;
+  --SecondaryDark: #222736;
 }
 
 body {
@@ -23,7 +25,6 @@ body {
   background-color: var(--light);
 }
 
-.pageWrapper{
-  padding-top: calc(var(--navHeight) + 50px);
-  
+.pageWrapper {
+  padding-top: calc(var(--navHeight) + 30px);
 }

@@ -1,7 +1,7 @@
 .header{
   width: 100%;
   display: flex;
-  background-color: var(--bluewu);
+  background-color: var(--PrimaryDark);
   height: var(--navHeight);
   position: fixed;
   justify-content: center;
@@ -11,7 +11,7 @@
 .logo{
   position: absolute;
   left: 15px;
-  height: 63px;
+  height: 46px;
 }
 
 .searchBar{
